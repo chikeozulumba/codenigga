@@ -31,6 +31,11 @@ class UserLogin
     $args->execute(array($this->email));
     if ($args->rowCount() > 0) {
       $user = $args->fetch(PDO::FETCH_ASSOC);
+      if ($user->password == $this->password) {
+        return $user;
+      } else {
+        return 'Wrong password';        
+      }
           return $user;
     }
     return 'false';
